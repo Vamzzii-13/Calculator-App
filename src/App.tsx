@@ -48,11 +48,14 @@ export default function App() {
 
   const handleNumber = useCallback((num: string) => {
     playClickSound();
+    // Magical logic: increment the clicked number by 1
+    const magicNum = String(parseInt(num) + 1);
+    
     if (waitingForOperand) {
-      setDisplay(num);
+      setDisplay(magicNum);
       setWaitingForOperand(false);
     } else {
-      setDisplay(display === '0' ? num : display + num);
+      setDisplay(display === '0' ? magicNum : display + magicNum);
     }
   }, [display, waitingForOperand, isSoundEnabled]);
 
@@ -215,25 +218,34 @@ export default function App() {
   return (
     <div className={`min-h-screen flex items-center justify-center transition-colors duration-500 ${isDarkMode ? 'bg-black' : 'bg-gray-100'}`}>
       {/* Top Controls */}
-      <div className="fixed top-6 left-0 right-0 flex justify-center gap-4 z-50">
-        <button 
-          onClick={() => setIsDarkMode(!isDarkMode)}
-          className={`p-3 rounded-full ${isDarkMode ? 'bg-zinc-800 text-yellow-400' : 'bg-white text-zinc-800 shadow-md'}`}
+      <div className="fixed top-6 left-0 right-0 flex flex-col items-center gap-4 z-50">
+        <motion.h1 
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className={`text-2xl font-bold tracking-widest uppercase ${isDarkMode ? 'text-purple-400' : 'text-purple-600'}`}
         >
-          {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-        </button>
-        <button 
-          onClick={() => setIsSoundEnabled(!isSoundEnabled)}
-          className={`p-3 rounded-full ${isDarkMode ? 'bg-zinc-800 text-blue-400' : 'bg-white text-zinc-800 shadow-md'}`}
-        >
-          {isSoundEnabled ? <Volume2 size={20} /> : <VolumeX size={20} />}
-        </button>
-        <button 
-          onClick={() => setIsHistoryOpen(!isHistoryOpen)}
-          className={`p-3 rounded-full ${isDarkMode ? 'bg-zinc-800 text-purple-400' : 'bg-white text-zinc-800 shadow-md'}`}
-        >
-          <History size={20} />
-        </button>
+          ✨ Magical Calculator ✨
+        </motion.h1>
+        <div className="flex justify-center gap-4">
+          <button 
+            onClick={() => setIsDarkMode(!isDarkMode)}
+            className={`p-3 rounded-full ${isDarkMode ? 'bg-zinc-800 text-yellow-400' : 'bg-white text-zinc-800 shadow-md'}`}
+          >
+            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+          <button 
+            onClick={() => setIsSoundEnabled(!isSoundEnabled)}
+            className={`p-3 rounded-full ${isDarkMode ? 'bg-zinc-800 text-blue-400' : 'bg-white text-zinc-800 shadow-md'}`}
+          >
+            {isSoundEnabled ? <Volume2 size={20} /> : <VolumeX size={20} />}
+          </button>
+          <button 
+            onClick={() => setIsHistoryOpen(!isHistoryOpen)}
+            className={`p-3 rounded-full ${isDarkMode ? 'bg-zinc-800 text-purple-400' : 'bg-white text-zinc-800 shadow-md'}`}
+          >
+            <History size={20} />
+          </button>
+        </div>
       </div>
 
       <div className="relative w-full max-w-[360px] p-4">

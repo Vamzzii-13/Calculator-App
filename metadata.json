@@ -1,5 +1,5 @@
 {
-  "name": "iOS Calculator",
-  "description": "A fully functional iPhone-style calculator with a modern dark theme, keyboard support, and history panel.",
+  "name": "Magical Calculator",
+  "description": "A magical iPhone-style calculator where every number you click is automatically incremented by 1. Click 4, get 5!",
   "requestFramePermissions": []
 }
