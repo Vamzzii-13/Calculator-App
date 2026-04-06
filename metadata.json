@@ -1,0 +1,5 @@
+{
+  "name": "iOS Calculator",
+  "description": "A fully functional iPhone-style calculator with a modern dark theme, keyboard support, and history panel.",
+  "requestFramePermissions": []
+}
